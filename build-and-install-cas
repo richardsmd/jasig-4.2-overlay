@@ -1,0 +1,35 @@
+#!/bin/bash
+
+TC=/opt/liferay/tomcat/
+TC_APPS=$TC/webapps
+LOG=$TC/logs/catalina.out
+WAR=target/cas.war
+
+mvn clean package
+
+sudo cp etc/cas.properties /etc/cas/cas.properties
+
+sudo rm -rf $TC_APPS/cas
+
+# Clean incorrect person-directory versions out of JAR (a soon-to-be-released update will fix this)
+old_person_impl=$(unzip -l "$WAR" | grep 'person-directory-impl-1.7.0.jar' | awk '{ print $4 }')
+old_person_api=$( unzip -l "$WAR" | grep 'person-directory-api-1.7.0.jar'  | awk '{ print $4 }')
+
+if [ -n "$old_person_impl" ]; then
+    zip --delete "$WAR" "$old_person_impl" >/dev/null
+fi
+if [ -n "$old_person_api" ]; then
+    zip --delete "$WAR" "$old_person_api" >/dev/null
+fi
+
+# Pull the default service config (how does one keep this from being auto-added?)
+service_https_and_imaps=$(unzip -l "$WAR" | grep 'HTTPSandIMAPS-10000001.json' | awk '{ print $4 }')
+if [ -n "$service_https_and_imaps" ]; then
+    echo "Removing HTTPSandIMAPS-.....json"
+    zip --delete "$WAR" "$service_https_and_imaps" >/dev/null
+fi
+
+sudo cp $WAR $TC_APPS
+sudo service liferay stop
+sudo rm $LOG
+sudo service liferay start
