@@ -86,6 +86,23 @@
             <artifactId>c3p0</artifactId>
             <version>0.9.1.2</version>
         </dependency>
+        <!-- Person Directory (Attribute Resolution) -->
+        <dependency>
+              <groupId>org.apache.commons</groupId>
+              <artifactId>commons-collections4</artifactId>
+              <version>4.1</version>
+        </dependency>
+        <!-- Per forum https://groups.google.com/a/apereo.org/forum/?utm_medium=email&utm_source=footer#!msg/cas-user/LjF9OqC-HAw/WCCj62uvNAAJ
+             Fixes incorrect person-directory bundled (1.7.0).
+
+             NOTE: that this only adds 1.7.1 - build-and-install-cas removes the 1.7.0 files from the war
+        -->
+        <dependency>
+            <groupId>org.jasig.service.persondir</groupId>
+            <artifactId>person-directory-impl</artifactId>
+            <version>1.7.1</version>
+        </dependency>
+        <!-- END Person Directory -->
     </dependencies>
 
     <properties>

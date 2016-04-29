@@ -40,9 +40,6 @@
         <ref bean="rememberMeAuthenticationMetaDataPopulator" />
     </util:list>
 
-    <bean id="attributeRepository" class="org.jasig.services.persondir.support.NamedStubPersonAttributeDao"
-          p:backingMap-ref="attrRepoBackingMap" />
-
 <!--  Provided by default - may not be necessary
     <alias name="acceptUsersAuthenticationHandler" alias="primaryAuthenticationHandler" />
 -->
@@ -101,19 +98,26 @@
     <alias name="dataSource" alias="queryEncodeDatabaseDataSource" />
     <!-- END BUGFIX -->
 
-    <util:map id="attrRepoBackingMap">
-        <entry key="uid" value="uid" />
-        <entry key="eduPersonAffiliation" value="eduPersonAffiliation" />
-        <entry key="groupMembership" value="groupMembership" />
-        <entry>
-            <key><value>memberOf</value></key>
-            <list>
-                <value>faculty</value>
-                <value>staff</value>
-                <value>org</value>
-            </list>
-        </entry>
-    </util:map>
+    <alias name="singleRowJdbcPersonAttributeDao" alias="attributeRepository" />
+
+    <bean id="singleRowJdbcPersonAttributeDao"
+        class="org.jasig.services.persondir.support.jdbc.SingleRowJdbcPersonAttributeDao">
+        <constructor-arg index="0" ref="dataSource" />
+        <constructor-arg index="1" value="SELECT username,firstname,lastname,email FROM ptcs.user WHERE {0}" />
+        <property name="queryAttributeMapping">
+            <map>
+                <entry key="username" value="username" />
+            </map>
+        </property>
+        <property name="resultAttributeMapping">
+            <map>
+                <entry key="username" value="username" />
+                <entry key="firstname" value="firstname" />
+                <entry key="lastname" value="lastname" />
+                <entry key="email" value="email" />
+            </map>
+        </property>
+    </bean>
 
     <alias name="serviceThemeResolver" alias="themeResolver" />
 
