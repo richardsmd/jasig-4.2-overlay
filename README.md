@@ -1,7 +1,7 @@
 CAS Overlay Template
 ============================
 
-Generic CAS maven war overlay to exercise the latest versions of CAS. This overlay could be freely used as a starting template for local CAS maven war overlays. The CAS services management overlay is available [here](https://github.com/Jasig/cas-services-management-overlay).
+Mike's basline CAS maven war overlay. Taken from [cas-overlay-template](https://github.com/Jasig/cas-overlay-template).
 
 # Versions
 ```xml
@@ -13,12 +13,17 @@ Generic CAS maven war overlay to exercise the latest versions of CAS. This overl
 
 # Configuration
 
-The `etc` directory contains the configuration files that need to be copied to `/etc/cas`.
-
-Current files are:
-
-* `cas.properties`
-* `log4j2.xml`
+* Basic Setup - edit 'etc/cas.properties'
+** server.name
+** host.name
+** database.driverClass
+** database.url
+** database.user
+** database.password
+* Deployment - edit build-and-install-cas
+** Update $TC to root of Tomcat installation (Default: /opt/liferay/tomcat/)
+* Attribute Customization - edit 'src/main/webapp/WEB-INF/deployerConfigContext.xml'
+** Bean "singleRowJdbcPersonAttributeDao" - edit query and "resultAttributeMapping"
 
 # Build
 
@@ -26,27 +31,19 @@ Current files are:
 mvnw clean package
 ```
 
-or
-
-```bash
-mvnw.bat clean package
-```
-
 # Deployment
 
-## Embedded Jetty
-
-* Create a Java keystore at `/etc/cas/jetty/thekeystore` with the password `changeit`.
-* Import your CAS server certificate inside this keystore.
-
 ```bash
-mvnw jetty:run-forked
+./build-and-install-cas
 ```
+
+## Non-Liferay installs may need to provide their own postgresql .jar.
+
+* You can get that [here](https://jdbc.postgresql.org/download.html).
+** HINT: [direct link if you're using java 1.7](https://jdbc.postgresql.org/download/postgresql-9.4.1208.jre7.jar)
+* Copy it to $TC/lib/ext/postgresql.jar (or update the deploy script)
 
 CAS will be available at:
 
-* `http://cas.server.name:8080/cas`
-* `https://cas.server.name:8443/cas`
-
-## External
-Deploy resultant `target/cas.war` to a Servlet container of choice.
+* `http://cas.server.name/cas`
+* `https://cas.server.name/cas`
