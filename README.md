@@ -1,7 +1,7 @@
 CAS Overlay Template
 ============================
 
-Mike's basline CAS maven war overlay. Taken from [cas-overlay-template](https://github.com/Jasig/cas-overlay-template).
+Mike's baseline CAS maven war overlay. Taken from [cas-overlay-template](https://github.com/Jasig/cas-overlay-template).
 
 # Versions
 ```xml
