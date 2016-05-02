@@ -9,7 +9,10 @@ Mike's baseline CAS maven war overlay. Taken from [cas-overlay-template](https:/
 ```
 
 # Requirements
-* JDK 1.7+
+* JDK 1.7+ (only 1.7 tested)
+* Maven
+* zip, unzip
+* sudo
 
 # Configuration
 
