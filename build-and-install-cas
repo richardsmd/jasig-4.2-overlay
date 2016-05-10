@@ -8,7 +8,7 @@ TC_INIT_NAME=tomcat
 
 mvn clean package
 
-sudo cp etc/cas.properties /etc/cas/cas.properties
+sudo cp -r etc /etc/cas
 
 sudo rm -rf $TC_APPS/cas
 
