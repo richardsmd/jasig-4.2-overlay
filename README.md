@@ -24,7 +24,7 @@ Mike's baseline CAS maven war overlay. Taken from [cas-overlay-template](https:/
   * database.user
   * database.password
 * Deployment - edit build-and-install-cas
-  * Update $TC to root of Tomcat installation (Default: /opt/liferay/tomcat/)
+  * Update $TC to root of Tomcat installation (Default: /opt/tomcat/)
 * Attribute Customization - edit 'src/main/webapp/WEB-INF/deployerConfigContext.xml'
   * Bean "singleRowJdbcPersonAttributeDao" - edit query and "resultAttributeMapping"
 
@@ -48,5 +48,4 @@ mvnw clean package
 
 CAS will be available at:
 
-* `http://cas.server.name/cas`
 * `https://cas.server.name/cas`
