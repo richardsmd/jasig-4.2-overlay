@@ -6,7 +6,7 @@ MVN_ARCHIVE="apache-maven-${MVN_VER}-bin.tar.gz"
 INSTALL_LOC=/usr/local/
 
 # download maven
-wget $MVN_LOC/$MVN_ARCHIVE
+wget -N $MVN_LOC/$MVN_ARCHIVE
 
 # extract to system and create symlink
 sudo tar -zxf $MVN_ARCHIVE -C $INSTALL_LOC
