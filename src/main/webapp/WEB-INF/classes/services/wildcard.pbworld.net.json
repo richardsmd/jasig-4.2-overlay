@@ -1,8 +1,8 @@
 {
   "@class" : "org.jasig.cas.services.RegexRegisteredService",
-  "serviceId" : "^https?://.*[.]pbworld[.]net.*",
+  "serviceId" : "^https?://.*[.]pbworld[.]net/.*",
   "name" : "HTTP and HTTPS",
-  "id" : 10000001,
+  "id" : 10000006,
   "description" : "This service definition authorized all application urls that support HTTP and HTTPS protocols.",
   "proxyPolicy" : {
     "@class" : "org.jasig.cas.services.RefuseRegisteredServiceProxyPolicy"

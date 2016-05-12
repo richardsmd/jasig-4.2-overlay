@@ -1,8 +1,8 @@
 {
   "@class" : "org.jasig.cas.services.RegexRegisteredService",
-  "serviceId" : "^https?://.*[.]rkk[.]com.*",
+  "serviceId" : "^https?://.*[.]rkk[.]com/.*",
   "name" : "HTTP and HTTPS",
-  "id" : 10000002,
+  "id" : 10000101,
   "description" : "This service definition authorized all application urls that support HTTP and HTTPS protocols from *.rkk.com",
   "proxyPolicy" : {
     "@class" : "org.jasig.cas.services.RefuseRegisteredServiceProxyPolicy"
