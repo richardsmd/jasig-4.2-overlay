@@ -110,6 +110,14 @@
             <version>${cas.version}</version>
             <scope>runtime</scope>
         </dependency>
+        <!-- Hazelcast - for HA CAS config. -->
+        <!--
+        <dependency>
+            <groupId>org.jasig.cas</groupId>
+            <artifactId>cas-server-integration-hazelcast</artifactId>
+            <version>${cas.version}</version>
+        </dependency>
+        -->
     </dependencies>
 
     <properties>
