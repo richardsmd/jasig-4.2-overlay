@@ -23,6 +23,13 @@ if [ -n "$old_person_api" ]; then
     zip --delete "$WAR" "$old_person_api" >/dev/null
 fi
 
+# Remove incompatible spring core
+bad_spring=$(unzip -l "$WAR" | grep 'spring-core-4.2.3.RELEASE.jar' | awk '{ print $4 }')
+
+if [ -n "$bad_spring" ]; then
+    zip --delete "$WAR" "$bad_spring" > /dev/null
+fi
+
 # Pull the default service config (how does one keep this from being auto-added?)
 service_https_and_imaps=$(unzip -l "$WAR" | grep 'HTTPSandIMAPS-10000001.json' | awk '{ print $4 }')
 if [ -n "$service_https_and_imaps" ]; then
