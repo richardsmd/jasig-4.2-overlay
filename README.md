@@ -49,3 +49,7 @@ mvnw clean package
 CAS will be available at:
 
 * `https://cas.server.name/cas`
+
+For basic validation use the above URL. If you want user attributes use /p3:
+
+* `https://cas.server.name/cas/p3`
