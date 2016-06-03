@@ -1,13 +1,14 @@
 #!/bin/bash
 
-TC=/opt/liferay/tomcat/
-TC_APPS=$TC/webapps
+TC=/opt/tomcat/
+TC_APPS=$TC/webapps/
 LOG=$TC/logs/catalina.out
 WAR=target/cas.war
+TC_INIT_NAME=tomcat
 
 mvn clean package
 
-sudo cp etc/cas.properties /etc/cas/cas.properties
+sudo cp -r etc /etc/cas
 
 sudo rm -rf $TC_APPS/cas
 
@@ -30,6 +31,6 @@ if [ -n "$service_https_and_imaps" ]; then
 fi
 
 sudo cp $WAR $TC_APPS
-sudo service liferay stop
+sudo service $TC_INIT_NAME stop
 sudo rm $LOG
-sudo service liferay start
+sudo service $TC_INIT_NAME start

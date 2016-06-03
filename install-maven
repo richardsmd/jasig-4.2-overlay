@@ -1,0 +1,15 @@
+#!/bin/bash
+
+MVN_VER=3.3.9
+MVN_LOC="http://apache.osuosl.org/maven/maven-${MVN_VER%%.*}/${MVN_VER}/binaries/apache-maven-${MVN_VER}-bin.tar.gz"
+MVN_ARCHIVE=${MVN_LOC##*/}
+INSTALL_LOC=/usr/local/
+
+# download maven
+wget -N $MVN_LOC
+
+# extract to system and create symlink
+sudo tar -zxf $MVN_ARCHIVE -C $INSTALL_LOC
+sudo ln -s "$INSTALL_LOC/${MVN_ARCHIVE%%-bin.tar.gz}"  /bin/mvn /usr/bin/mvn
+
+# verify version with mvn -v
