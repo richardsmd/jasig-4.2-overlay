@@ -28,13 +28,13 @@ Mike's baseline CAS maven war overlay. Taken from [cas-overlay-template](https:/
 * Attribute Customization - edit 'src/main/webapp/WEB-INF/deployerConfigContext.xml'
   * Bean "singleRowJdbcPersonAttributeDao" - edit query and "resultAttributeMapping"
 
-# Build
+# Build Only
 
 ```bash
-mvnw clean package
+mvn clean package
 ```
 
-# Deployment
+# Build and Deploy
 
 ```bash
 ./build-and-install-cas
