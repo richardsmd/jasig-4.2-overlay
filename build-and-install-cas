@@ -6,6 +6,8 @@ LOG=$TC/logs/catalina.out
 WAR=target/cas.war
 TC_INIT_NAME=tomcat
 
+sudo apt-get install -y maven2 zip unzip
+
 mvn clean package
 
 sudo cp -r --no-target-directory etc /etc/cas
